@@ -1,7 +1,6 @@
 import yaml
-import pymysql
 import warnings
-
+import sqlite3
 
 try:
     config_file = open('config.yml')
@@ -9,45 +8,47 @@ except FileNotFoundError:
     config_file = open('example_config.yml')
 finally:
     config = yaml.load(config_file, Loader=yaml.FullLoader)
-    user, password, database = config['mysql']['user'], config['mysql']['pass'], config['mysql']['database']
+    # user, password, database = config['mysql']['user'], '@'+config['mysql']['pass'], config['mysql']['database']
 
-db = pymysql.connect('localhost', user, password, database)
+# db = pymysql.connect('localhost', user, password, database)
+db = sqlite3.connect('practice.db')
 
-# def make_db():
-#     """
-#     DANGER: RESETS ALL DATA IN DATABASE
-#     """
-#     cursor = db.cursor()
-#     cursor.execute("DROP TABLE IF EXISTS servers")
-#     cursor.execute("""CREATE TABLE servers (
-#         server_id BIGINT NOT NULL,
-#         nickname_sync BOOLEAN,
-#         role_sync BOOLEAN,
-#         sync_source VARCHAR(20),
-#         join_message BOOLEAN DEFAULT FALSE,
-#         prefix VARCHAR(255),
-#         PRIMARY KEY (server_id))""")
-#     cursor.execute("DROP TABLE IF EXISTS subscriptions_contests")
-#     cursor.execute("""CREATE TABLE subscriptions_contests (
-#         channel_id BIGINT NOT NULL,
-#         subint INT DEFAULT 63,
-#         PRIMARY KEY (channel_id))""")
-#     cursor.execute("DROP TABLE IF EXISTS users")
-#     cursor.execute("""CREATE TABLE users (
-#         user_id BIGINT NOT NULL,
-#         tea INT,
-#         dmoj VARCHAR(255),
-#         last_dmoj_problem VARCHAR(255),
-#         can_repeat BOOLEAN,
-#         codeforces VARCHAR(255),
-#         country VARCHAR(255),
-#         can_suggest BOOLEAN,
-#         PRIMARY KEY (user_id))""")
-#     cursor.execute("SHOW TABLES")
-#     result = cursor.fetchall()
-#     print("Tables:")
-#     for data in result:
-#         print(data[0])
+
+def make_db():
+    """
+    DANGER: RESETS ALL DATA IN DATABASE
+    """
+    cursor = db.cursor()
+    cursor.execute("DROP TABLE IF EXISTS servers")
+    cursor.execute("""CREATE TABLE servers (
+        server_id BIGINT NOT NULL,
+        nickname_sync BOOLEAN,
+        role_sync BOOLEAN,
+        sync_source VARCHAR(20),
+        join_message BOOLEAN DEFAULT FALSE,
+        prefix VARCHAR(255),
+        PRIMARY KEY (server_id))""")
+    cursor.execute("DROP TABLE IF EXISTS subscriptions_contests")
+    cursor.execute("""CREATE TABLE subscriptions_contests (
+        channel_id BIGINT NOT NULL,
+        subint INT DEFAULT 63,
+        PRIMARY KEY (channel_id))""")
+    cursor.execute("DROP TABLE IF EXISTS users")
+    cursor.execute("""CREATE TABLE users (
+        user_id BIGINT NOT NULL,
+        tea INT,
+        dmoj VARCHAR(255),
+        last_dmoj_problem VARCHAR(255),
+        can_repeat BOOLEAN,
+        codeforces VARCHAR(255),
+        country VARCHAR(255),
+        can_suggest BOOLEAN,
+        PRIMARY KEY (user_id))""")
+    #cursor.execute("SHOW TABLES")
+    result = cursor.fetchall()
+    print("Tables:")
+    for data in result:
+        print(data[0])
 
 class MySQLConnection(object):
     def sanitize_id(self, id):
@@ -71,7 +72,7 @@ class MySQLConnection(object):
         try:
             cursor.execute(sql)
             db.commit()
-        except pymysql.Error as e:
+        except sqlite3.Error as e:
             db.rollback()
             raise e
 
@@ -99,7 +100,7 @@ class MySQLConnection(object):
     def insert_ignore_user(self, user_id):
         if not self.sanitize_id(user_id):
             return -1
-        sql = "INSERT IGNORE INTO users(user_id, tea, dmoj, last_dmoj_problem, can_repeat, codeforces, country, can_suggest) \
+        sql = "INSERT OR IGNORE INTO users(user_id, tea, dmoj, last_dmoj_problem, can_repeat, codeforces, country, can_suggest) \
             VALUES (%d, 0, NULL, NULL, TRUE, NULL, NULL, TRUE)" % \
             (user_id)
         with warnings.catch_warnings():
@@ -211,7 +212,7 @@ class MySQLConnection(object):
     def insert_ignore_server(self, server_id):
         if not self.sanitize_id(server_id):
             return -1
-        sql = "INSERT IGNORE INTO servers(server_id, nickname_sync, role_sync, sync_source, join_message) \
+        sql = "INSERT OR IGNORE INTO servers(server_id, nickname_sync, role_sync, sync_source, join_message) \
             VALUES (%d, FALSE, FALSE, 'dmoj', FALSE)" % \
             (server_id)
         with warnings.catch_warnings():
@@ -335,10 +336,8 @@ class MySQLConnection(object):
         return channels
 
 if __name__ == "__main__":
-    cursor = db.cursor()
-    cursor.execute("SELECT VERSION()")
-    data = cursor.fetchone()
-    print("Database version: %s " % data)
-    db.close()
+    make_db()
+    print("Database version: sqlite3 ")
+
 
 mySQLConnection = MySQLConnection()

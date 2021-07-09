@@ -34,8 +34,32 @@ finally:
     bot_id = config['bot']['id']
     owner_id = config['bot']['owner_id']
 
-replies = ('Practice Bot believes that with enough practice, you can complete any goal!', 'Keep practicing! Practice Bot says that every great programmer starts somewhere!', 'Hey now, you\'re an All Star, get your game on, go play (and practice)!',
-           'Stuck on a problem? Every logical problem has a solution. You just have to keep practicing!', ':heart:')
+replies = (
+    'Practice Bot believes that with enough practice, you can complete any goal!',
+    'Keep practicing! Practice Bot says that every great programmer starts somewhere!',
+    'Hey now, you\'re an All Star, get your game on, go play (and practice)!',
+    'Stuck on a problem? Every logical problem has a solution. You just have to keep practicing!',
+    ':heart:',
+    'First, solve the problem. Then, write the code.',
+    'Experience is the name everyone gives to their mistakes.',
+    'In order to be irreplaceable, one must always be different',
+    'Knowledge is power.',
+    'Sometimes it pays to stay in bed on Monday, rather than spending the rest of the week debugging Monday’s code.',
+    'Perfection is achieved not when there is nothing more to add, but rather when there is nothing more to take away.',
+    'Code is like humor. When you have to explain it, it’s bad.',
+    'Fix the cause, not the symptom.',
+    'Optimism is an occupational hazard of programming: feedback is the treatment.',
+    'Simplicity is the soul of efficiency.',
+    'Before software can be reusable it first has to be usable.',
+    'Make it work, make it right, make it fast.',
+    'Talk is cheap. Show me the code.',
+    'Always code as if the guy who ends up maintaining your code will be a violent psychopath who knows where you live',
+    'Any fool can write code that a computer can understand. Good programmers write code that humans can understand.',
+    'Truth can only be found in one place: the code.',
+    'It\'s hard enough to find an error in your code when you\'re looking for it; it\'s even harder when you\'ve assumed your code is error-free.',
+    'It\'s not at all important to get it right the first time. It\'s vitally important to get it right the last time.',
+    'Copy and paste is a design error.',
+)
 
 custom_prefixes = query.get_prefixes()
 
@@ -126,6 +150,16 @@ async def motivation(ctx):
 # async def status_change_before():
 #     await bot.wait_until_ready()
 
+@tasks.loop(hours=24)
+async def called_once_a_day():
+    message_channel = bot.get_channel(824234449495523332)
+    await message_channel.send('@everyone' + ', ' + rand.choice(replies))
+
+@called_once_a_day.before_loop
+async def before():
+    await bot.wait_until_ready()
+
+called_once_a_day.start()
 
 bot.remove_command('help')
 
@@ -137,7 +171,8 @@ async def help(ctx):
 
 @bot.event
 async def on_command_error(ctx, error):
-    with open('command.log', 'a') as f:
+    with open('command.log',
+    'a') as f:
         f.write('%s: [ERROR] %s\n' % (datetime.now().strftime('%Y-%m-%d %H:%M:%S'), 'NULL' if ctx.command is None else ctx.command.name))
     if any(
         isinstance(error, CommonError) for CommonError in (
@@ -170,7 +205,8 @@ async def on_command_error(ctx, error):
         raise error
 
 
-@bot.command(aliases=['toggleJoin', 'tj'])
+@bot.command(aliases=['toggleJoin',
+'tj'])
 @commands.has_permissions(administrator=True)
 async def togglejoin(ctx):
     join_message = query.get_join_message(ctx.message.guild.id)
@@ -210,7 +246,8 @@ async def on_member_join(member):
 
 @bot.before_invoke
 async def log(ctx):
-    with open('command.log', 'a') as f:
+    with open('command.log',
+    'a') as f:
         f.write('%s: %s\n' % (datetime.now().strftime('%Y-%m-%d %H:%M:%S'), ctx.command.name))
 
 
