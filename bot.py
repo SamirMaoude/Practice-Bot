@@ -166,7 +166,7 @@ bot.remove_command('help')
 
 @bot.command()
 async def help(ctx):
-    await ctx.send(ctx.message.author.display_name + ', Here is a full list of my commands! <https://github.com/kevinjycui/Practice-Bot/wiki/Commands>')
+    await ctx.send(ctx.message.author.display_name + ', Here is a full list of my commands! <https://github.com/SamirMaoude/Practice-Bot/wiki/Commands>')
 
 
 @bot.event
@@ -194,7 +194,7 @@ async def on_command_error(ctx, error):
     elif isinstance(error, commands.errors.MissingPermissions):
         await ctx.send(ctx.message.author.display_name + ', Sorry, you are missing permissions to run this command!')
     elif isinstance(error, commands.BotMissingPermissions):
-        await ctx.send(ctx.message.author.display_name + ', It would seem that the bot is missing permissions to run this command! Be sure that all the required permissions are set to on: both for the bot and the channel. See here for a list of required permissions: https://github.com/kevinjycui/Practice-Bot/wiki/Permissions')
+        await ctx.send(ctx.message.author.display_name + ', It would seem that the bot is missing permissions to run this command! Be sure that all the required permissions are set to on: both for the bot and the channel. See here for a list of required permissions: https://github.com/SamirMaoude/Practice-Bot/wiki/Permissions')
     elif isinstance(error, aiohttp.ClientError):
         await ctx.send(ctx.message.author.display_name + ', There appears to have been some HTTP error. Either your command was invalid or there is some problem in the server. Try again later!')
     else:

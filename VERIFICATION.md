@@ -1,7 +1,7 @@
 # Application Details
 
 ## What does your application do? Please be as detailed as possible, and feel free to include links to image or video examples.
-Discord to competitive programming, online judge, and problem archives integration. Links Discord users to various sites in competitive programming (AtCoder, CodeChef, Codeforces, CSES, DMOJ: Modern Online Judge, Leetcode, Szkopuł, TopCoder, and WCIPEG) based in Canada, United States of America, Russia, Japan, Finland, and Poland. Allows for fetching random problems, managing the roles/nicknames of competitive programming servers, and contest alerts. Completely open-source at https://github.com/kevinjycui/Practice-Bot
+Discord to competitive programming, online judge, and problem archives integration. Links Discord users to various sites in competitive programming (AtCoder, CodeChef, Codeforces, CSES, DMOJ: Modern Online Judge, Leetcode, Szkopuł, TopCoder, and WCIPEG) based in Canada, United States of America, Russia, Japan, Finland, and Poland. Allows for fetching random problems, managing the roles/nicknames of competitive programming servers, and contest alerts. Completely open-source at https://github.com/SamirMaoude/Practice-Bot
 
 # Data Collection
 

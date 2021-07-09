@@ -15,11 +15,11 @@ Support this bot by voting for it [here](https://top.gg/bot/691416325557452861/v
 ## What's New 
 
 ### March 2021
- * Please read [updated security details](https://github.com/kevinjycui/Practice-Bot/blob/master/VERIFICATION.md)
+ * Please read [updated security details](https://github.com/SamirMaoude/Practice-Bot/blob/master/VERIFICATION.md)
 
 ### February 2021
  * Leetcode bug fix, prevents paid problems from appearing as non-paid
- * Please read [updated security details](https://github.com/kevinjycui/Practice-Bot/blob/master/VERIFICATION.md)
+ * Please read [updated security details](https://github.com/SamirMaoude/Practice-Bot/blob/master/VERIFICATION.md)
 
 ### Januray 2021
  * Random problem parameters for Codeforces now refers to rating rather than points
@@ -32,7 +32,7 @@ Support this bot by voting for it [here](https://top.gg/bot/691416325557452861/v
 
 ### November 2020
  * Added problem support for LeetCode
- * Added some new informational commands. See [commands](https://github.com/kevinjycui/Practice-Bot/wiki/Commands) for more details
+ * Added some new informational commands. See [commands](https://github.com/SamirMaoude/Practice-Bot/wiki/Commands) for more details
 
 ### September 2020
  * Improved contest display
@@ -44,10 +44,10 @@ Support this bot by voting for it [here](https://top.gg/bot/691416325557452861/v
  * Added connection support for Codeforces
  * Added problem support for Szkopuł
  * Added suggested problems
- * Changed some command names. See [commands](https://github.com/kevinjycui/Practice-Bot/wiki/Commands) for more details
+ * Changed some command names. See [commands](https://github.com/SamirMaoude/Practice-Bot/wiki/Commands) for more details
 
 ## Commands
-[Full list of commands here](https://github.com/kevinjycui/Practice-Bot/wiki/Commands)
+[Full list of commands here](https://github.com/SamirMaoude/Practice-Bot/wiki/Commands)
 
 ## Online Judges
 | | Random Problems | Suggested Problems | Contest Notifications | Rating Roles | Account Link | Submission |

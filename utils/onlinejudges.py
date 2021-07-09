@@ -32,14 +32,14 @@ class OnlineJudges:
         'top': 'topcoder'
     }
     thumbnails = {
-        'dmoj': 'https://raw.githubusercontent.com/kevinjycui/Practice-Bot/master/assets/dmoj-thumbnail.png',
-        'codeforces': 'https://raw.githubusercontent.com/kevinjycui/Practice-Bot/master/assets/cf-thumbnail.png',
-        'atcoder': 'https://raw.githubusercontent.com/kevinjycui/Practice-Bot/master/assets/at-thumbnail.png',
-        'cses': 'https://raw.githubusercontent.com/kevinjycui/Practice-Bot/master/assets/cses-thumbnail.png',
-        'szkopul': 'https://raw.githubusercontent.com/kevinjycui/Practice-Bot/master/assets/szkopul-thumbnail.png',
-        'leetcode': 'https://raw.githubusercontent.com/kevinjycui/Practice-Bot/master/assets/lc-thumbnail.png',
-        'codechef': 'https://raw.githubusercontent.com/kevinjycui/Practice-Bot/master/assets/cc-thumbnail.png',
-        'topcoder': 'https://raw.githubusercontent.com/kevinjycui/Practice-Bot/master/assets/tc-thumbnail.png'
+        'dmoj': 'https://raw.githubusercontent.com/SamirMaoude/Practice-Bot/master/assets/dmoj-thumbnail.png',
+        'codeforces': 'https://raw.githubusercontent.com/SamirMaoude/Practice-Bot/master/assets/cf-thumbnail.png',
+        'atcoder': 'https://raw.githubusercontent.com/SamirMaoude/Practice-Bot/master/assets/at-thumbnail.png',
+        'cses': 'https://raw.githubusercontent.com/SamirMaoude/Practice-Bot/master/assets/cses-thumbnail.png',
+        'szkopul': 'https://raw.githubusercontent.com/SamirMaoude/Practice-Bot/master/assets/szkopul-thumbnail.png',
+        'leetcode': 'https://raw.githubusercontent.com/SamirMaoude/Practice-Bot/master/assets/lc-thumbnail.png',
+        'codechef': 'https://raw.githubusercontent.com/SamirMaoude/Practice-Bot/master/assets/cc-thumbnail.png',
+        'topcoder': 'https://raw.githubusercontent.com/SamirMaoude/Practice-Bot/master/assets/tc-thumbnail.png'
     }
     colours = {
         'dmoj': discord.Colour(int('fcdc00', 16)),
